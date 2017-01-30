@@ -20,10 +20,26 @@ public class KataCalculator {
 	}
 	
 	@Test
-	public void sumShouldReturnSumValue(){
+	public void twoAndThreeShouldReturnFive(){
 		Calculator calculator = new Calculator();
 		int sampleResult = 5;
 		int result = calculator.Add("2,3");
+		Assert.assertEquals(sampleResult, result);
+	}
+
+	@Test
+	public void multipleArgumentsShouldReturnNine(){
+		Calculator calculator = new Calculator();
+		int sampleResult = 9;
+		int result = calculator.Add("2,3,4");
+		Assert.assertEquals(sampleResult, result);
+	}
+	
+	@Test
+	public void multipleArgumentsShouldReturn158(){
+		Calculator calculator = new Calculator();
+		int sampleResult = 158;
+		int result = calculator.Add("50,8,0,50,40,10");
 		Assert.assertEquals(sampleResult, result);
 	}
 	
