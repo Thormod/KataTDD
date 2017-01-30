@@ -3,26 +3,43 @@
 public class Calculator {
 	
 	public int Add(String numbers){
-		// Result variable
+		// Result variable initialization
 		int result = 0;
+		
 		// Check if has multiple arguments 
 		// Check if the string has "," character
-		if(numbers.contains(",")){
-			
+		if(numbers.contains(",")){	
 			// Check how many arguments has
-			int argumentNumber = getArgumentsNumber(numbers);	
+			int argumentNumber = getArgumentsNumber(numbers, ',');	
+			
 			// Divide the string in array
 		    String parts[] = numbers.split(",");
 		    
 		    // Add the non-empty characters
 			for (int i = 0; i <= argumentNumber; i++) {
-				if (!parts[i].equals("")) {
-					result += Integer.parseInt(parts[i]);
+				if(parts[i].contains("\n")){
+					int subArgumentNumber = getArgumentsNumber(parts[i], '\n');	
+					String subParts[] = parts[i].split("\n");
+					for (int j = 0; j <= subArgumentNumber; j++) {
+						result += sum(subParts[j]);
+					}
+				} else {
+					result += sum(parts[i]);	
 				}
 			}
-			
 			return result;
 		} else {
+			
+			if(numbers.contains("\n")){
+				// Check how many arguments has
+				int argumentNumber = getArgumentsNumber(numbers, '\n');	
+				// Divide the string in array
+			    String parts[] = numbers.split("\n");
+			    for (int i = 0; i <= argumentNumber; i++) {
+			    	result += sum(parts[i]);
+			    }
+			}
+			
 			// Check if the string is empty
 			if(numbers.equals("")){
 				return result;
@@ -33,11 +50,9 @@ public class Calculator {
 	}
 	
 	// Method to check how many arguments were sent
-	private int getArgumentsNumber(String numbers){
+	private int getArgumentsNumber(String numbers, char toCheck){
 		// Char counter
 		int charCount = 0;
-		// Character to check
-		char toCheck = ',';
 		// Temporal variable
 		char temp;
 		// Check every character in the string
@@ -51,5 +66,12 @@ public class Calculator {
 		return charCount;
 	}
 	
+	private int sum(String number){
+		int result = 0;
+		if (!number.equals("")) {
+			result += Integer.parseInt(number);
+		}
+		return result;
+	}
 	
 }

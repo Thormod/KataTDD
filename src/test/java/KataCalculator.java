@@ -43,4 +43,28 @@ public class KataCalculator {
 		Assert.assertEquals(sampleResult, result);
 	}
 	
+	@Test
+	public void twoDiferentSeparatorsShouldReturn4(){
+		Calculator calculator = new Calculator();
+		int sampleResult = 4;
+		int result = calculator.Add("2\n1,1");
+		Assert.assertEquals(sampleResult, result);
+	}
+	
+	@Test
+	public void threeDiferentSeparatorsShouldReturn16(){
+		Calculator calculator = new Calculator();
+		int sampleResult = 16;
+		int result = calculator.Add("2\n1,10\n1,1\n1");
+		Assert.assertEquals(sampleResult, result);
+	}
+	
+	@Test
+	public void onlyNewLineSeparatorShouldReturn2(){
+		Calculator calculator = new Calculator();
+		int sampleResult = 2;
+		int result = calculator.Add("1\n1");
+		Assert.assertEquals(sampleResult, result);
+	}
+	
 }
